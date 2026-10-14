@@ -2209,9 +2209,13 @@ ul {
     padding-top: 44px;
   }
   .footer-grid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 35px 25px;
     padding-bottom: 35px;
+    text-align: center;
+  }
+  .footer-grid > div {
+    min-width: 0;
   }
   .footer-brand {
     grid-column: 1 / -1;
@@ -2221,17 +2225,23 @@ ul {
   }
   .footer-brand p {
     max-width: 310px;
+    margin-inline: auto;
+  }
+  .footer-brand .cmyk-dots {
+    justify-content: center;
   }
   .footer-grid h3 {
     margin-bottom: 16px;
   }
   .footer-grid li a {
     font-size: 10px;
+    justify-content: center;
   }
   .footer-contact {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 7px 15px;
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
+    gap: 7px;
   }
   .footer-contact h3 {
     grid-column: 1 / -1;
@@ -2240,14 +2250,18 @@ ul {
   .footer-contact > a,
   .footer-contact > p {
     margin-top: 5px;
-    font-size: 9px;
+    font-size: 11px;
+    justify-content: center;
+    max-width: 100%;
   }
   .footer-contact > span {
     font-size: 9px;
     margin-top: 8px;
   }
   .footer-bottom {
-    padding-block: 20px 32px;
+    justify-content: center;
+    text-align: center;
+    padding-block: 20px 88px;
   }
   .footer-bottom p {
     font-size: 8px;
