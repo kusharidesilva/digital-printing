@@ -1,6 +1,7 @@
 import http from "node:http";
 import { readFile, stat } from "node:fs/promises";
 import path from "node:path";
+import { gzipSync } from "node:zlib";
 const root = path.resolve("out");
 const port = Number(process.env.PORT || 3000);
 const mimeTypes = {
@@ -43,9 +44,23 @@ const server = http.createServer(async (request, response) => {
       file = path.join(root, "404.html");
       content = await readFile(file);
     }
+    const compress =
+      /\bgzip\b/.test(request.headers["accept-encoding"] || "") &&
+      [".html", ".txt", ".js", ".css", ".json", ".xml", ".svg"].includes(
+        path.extname(file),
+      );
+    if (compress) content = gzipSync(content);
     response.writeHead(status, {
       "Content-Type":
         mimeTypes[path.extname(file)] || "application/octet-stream",
+      Vary: "Accept-Encoding",
+      ...(compress ? { "Content-Encoding": "gzip" } : {}),
+      "Cache-Control":
+        filename.startsWith("/_next/static/") || filename.startsWith("/fonts/")
+          ? "public, max-age=31536000, immutable"
+          : filename.startsWith("/images/")
+            ? "public, max-age=86400"
+            : "no-cache",
     });
     if (request.method === "HEAD") response.end();
     else response.end(content);
