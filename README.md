@@ -75,6 +75,10 @@ Authenticate through GitHub's supported Git credential manager or SSH flow. Neve
 
 ## Deploy on Cloudflare Pages through GitHub
 
+The current production project is **digital-printing**, hosted at <https://digital-printing-b62.pages.dev>. It uses Direct Upload. Run `npm run deploy:cloudflare` after authenticating with `npx wrangler login` to update it. The script explicitly deploys the `main` production branch.
+
+For automatic GitHub builds, create a separate Git-integrated Pages project using the steps below; a Direct Upload project cannot be converted to Git integration.
+
 1. Sign into the [Cloudflare dashboard](https://dash.cloudflare.com/).
 2. Open **Workers & Pages → Create application → Pages → Import an existing Git repository**.
 3. Connect GitHub, authorize the repository and select `digital-printing`.
@@ -102,11 +106,11 @@ Reference: [Cloudflare's Next.js static deployment guide](https://developers.clo
 
 ## Optional direct deployment with Wrangler
 
-For a Cloudflare Pages project configured for direct upload, authenticate once and run:
+For a new Cloudflare Pages project configured for direct upload, authenticate once and run the following. The current `digital-printing` project already exists, so skip its creation command and use `npm run deploy:cloudflare` for updates.
 
 ```bash
 npx wrangler login
-npx wrangler pages project create digital-printing --production-branch main
+npx wrangler@4.151.0 pages project create digital-printing --production-branch main --force
 npm run deploy:cloudflare
 ```
 

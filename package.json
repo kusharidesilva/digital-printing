@@ -12,7 +12,7 @@
     "format:check": "prettier --check .",
     "check:export": "node scripts/check-export.mjs",
     "check:browser": "node scripts/browser-check.mjs",
-    "deploy:cloudflare": "npm run build && npx wrangler pages deploy out --project-name digital-printing"
+    "deploy:cloudflare": "npm run build && npx wrangler@4.151.0 pages deploy out --project-name digital-printing --branch main"
   },
   "dependencies": {
     "lucide-react": "1.57.0",

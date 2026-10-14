@@ -13,7 +13,7 @@ export const businessInfo = {
     time: "9:00 AM – 6:00 PM",
     closed: "Sunday: closed",
   },
-  siteUrl: "https://digital-printing-studio-lk.newbow10.chatgpt.site", // Change to your Cloudflare/custom domain before rebuilding.
+  siteUrl: "https://digital-printing-b62.pages.dev", // Update to your custom domain before rebuilding when one is connected.
   whatsappMessage:
     "Hi, I would like to know more about your printing services.",
 };
