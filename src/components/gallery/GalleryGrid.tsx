@@ -56,8 +56,11 @@ export default function GalleryGrid({
           <m.button
             key={item.id}
             initial={false}
+            // Keep the same final transform in SSR and reduced-motion hydration.
             animate={
-              reduce ? { opacity: 1 } : { opacity: [0.6, 1], scale: [0.98, 1] }
+              reduce
+                ? { opacity: 1, scale: 1 }
+                : { opacity: [0.6, 1], scale: [0.98, 1] }
             }
             transition={{ duration: 0.28 }}
             className={`gallery-item ${item.tall ? "gallery-tall" : ""}`}

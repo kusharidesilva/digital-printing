@@ -2,7 +2,6 @@ import Link from "next/link";
 import { ArrowUpRight, Mail, MapPin, Phone } from "lucide-react";
 import { businessInfo, emailHref, phoneHref } from "@/data/business";
 import { navigation } from "@/data/navigation";
-import { services } from "@/data/services";
 import { whatsappHref } from "@/lib/whatsapp";
 import Logo from "./Logo";
 import WhatsAppIcon from "../shared/WhatsAppIcon";
@@ -23,7 +22,7 @@ export default function Footer() {
             <i />
           </div>
         </div>
-        <div>
+        <nav className="footer-navigation" aria-label="Footer navigation">
           <h3>Explore</h3>
           <ul>
             {navigation.map((item) => (
@@ -35,26 +34,7 @@ export default function Footer() {
               </li>
             ))}
           </ul>
-        </div>
-        <div>
-          <h3>What we print</h3>
-          <ul>
-            {[
-              services[0],
-              services[1],
-              services[2],
-              services[4],
-              services[6],
-              services[7],
-            ].map((service) => (
-              <li key={service.slug}>
-                <Link href={`/services/${service.slug}/`}>
-                  {service.shortTitle}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
+        </nav>
         <div className="footer-contact">
           <h3>Let’s talk print</h3>
           <a href={phoneHref}>
